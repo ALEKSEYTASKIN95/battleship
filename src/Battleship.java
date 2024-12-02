@@ -13,9 +13,9 @@ public class Battleship {
 
 
     public static void main(String[] args) {
-        System.out.println("Player#1, please enter your name:");
+        System.out.println("Игрок#1, введите имя:");
         playerName1 = scanner.nextLine();
-        System.out.println("Player#2, please enter your name:");
+        System.out.println("Игрок#2, введите имя:");
         playerName2 = scanner.nextLine();
         placeShips(playerName1, battlefield1);
         placeShips(playerName2, battlefield2);
@@ -63,6 +63,7 @@ public class Battleship {
                 }
             }
             deck--;
+            clearScreen();
         }
     }
 
@@ -70,7 +71,7 @@ public class Battleship {
         System.out.println("  0 1 2 3 4 5 6 7 8 9");
         for (int i = 0; i < battlefield.length; i++) {
             System.out.print(i + " ");
-            for (int j = 0; j < battlefield[i].length; j++) {
+            for (int j = 0; j < battlefield[1].length; j++) {
                 if (battlefield[j][i] == 0) {
                     System.out.print("- ");
                 } else {
@@ -83,43 +84,47 @@ public class Battleship {
 
     public static void makeTurn(String playerName, int[][] monitor, int[][] battlefield) {
         while (true) {
-            System.out.println(playerName + ", please make your turn.");
+            System.out.println(playerName + ", сделайте ваш ход.");
             System.out.println("  0 1 2 3 4 5 6 7 8 9");
             for (int i = 0; i < monitor.length; i++) {
                 System.out.print(i + " ");
-                for (int j = 0; j < monitor[i].length; j++) {
-                    if (monitor[j][i] == 0) {
+                for (int j = 0; j < monitor[1].length; j++) {
+                    if (monitor[i][j] == 0) {
                         System.out.print("- ");
-                    } else if (monitor[j][i] == 1) {
+                    } else if (monitor[i][j] == 1) {
                         System.out.print(". ");
                     } else {
-                        System.out.println("X ");
+                        System.out.print("X ");
                     }
                 }
                 System.out.println();
             }
-            System.out.println("Please enter OX coordinate");
+            System.out.println("Введите коордтнату OX");
             int x = scanner.nextInt();
-            System.out.println("Please enter OY coordinate");
+            System.out.println("Введите коордтнату OY");
             int y = scanner.nextInt();
-            if (battlefield[y][x] == 1) {
-                System.out.println("Hit! Make your turn again!");
-                monitor[y][x] = 2;
+            if(x < 10 && y < 10 && x >= 0 && y >= 0) {
+                if (battlefield[x][y] == 1) {
+                    System.out.println("Попадание! Сделайте ход снова!");
+                    monitor[y][x] = 2;
+                } else {
+                    System.out.println("Мимо! Ваш соперник ходит!");
+                    monitor[y][x] = 1;
+                    break;
+                }
+                clearScreen();
             } else {
-                System.out.println("Miss! Your opponents turn!");
-                monitor[y][x] = 1;
+                System.out.println("Неверные координаты");
                 break;
             }
-            clearScreen();
         }
     }
 
     public static boolean isWinCondition() {
         int counter1 = 0;
-        for (int[] ints : monitor1) {
-            for (int j = 0; j < ints.length; j++) {
-                if (ints[j] == 2) {
-                    System.out.println("debug");
+        for (int i = 0; i < monitor1.length; i++) {
+            for (int j = 0; j < monitor1[i].length; j++) {
+                if (monitor1[i][j] == 2) {
                     counter1++;
                 }
             }
@@ -128,17 +133,16 @@ public class Battleship {
         for (int i = 0; i < monitor2.length; i++) {
             for (int j = 0; j < monitor2[i].length; j++) {
                 if (monitor2[i][j] == 2) {
-                    System.out.println("debug");
                     counter2++;
                 }
             }
         }
         if (counter1 >= 10) {
-            System.out.println(playerName1 + " WIN!!!");
+            System.out.println(playerName1 + " Победил!");
             return true;
         }
         if (counter2 >= 10) {
-            System.out.println(playerName2 + " WIN!!!");
+            System.out.println(playerName2 + " Победил");
             return true;
         }
         return false;
@@ -147,12 +151,12 @@ public class Battleship {
     public static boolean isAvailable(int x, int y, int deck, int rotation, int[][] battlefield) {
         // проверка на выход корабля за длинну поля
         if (rotation == 1) {
-            if (y + deck > 10) {
+            if (y + deck > battlefield.length) {
                 return false;
             }
         }
         if (rotation == 2) {
-            if (x + deck > 10) {
+            if (x + deck > battlefield[0].length) {
                 return false;
             }
         }
@@ -166,7 +170,6 @@ public class Battleship {
                 } else {
                     xi = i;
                 }
-                //   battlefield[x + i][y];
                 if (x + 1 + xi < battlefield.length && x + 1 + xi >= 0) {
                     if (battlefield[x + 1 + xi][y + yi] != 0) {
                         return false;
