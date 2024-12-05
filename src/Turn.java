@@ -1,5 +1,10 @@
 import java.util.Scanner;
 
+/*
+Отрисовка поля
+Запрос координат у пользователя для выстрела
+
+ */
 public class Turn {
 
     public static void makeTurn(String playerName, int[][] monitor, int[][] battlefield) {

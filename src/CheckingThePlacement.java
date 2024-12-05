@@ -1,4 +1,6 @@
-
+/*
+Проверка на правильность постановки кораблей
+ */
 public class CheckingThePlacement {
 
     public static boolean isAvailable(int x, int y, int deck, int rotation, int[][] battlefield) {

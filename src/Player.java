@@ -1,3 +1,7 @@
+/*
+Класс игрока
+Создание переменной
+ */
 public class Player {
 
     public String playerName;

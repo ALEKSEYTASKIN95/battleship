@@ -1,5 +1,9 @@
 import java.util.Scanner;
 
+/*
+Запрос координат у пользователей для размещения кораблей  и их положения на поле
+Размещение кораблей на поле
+ */
 public class Ships  {
 
     public static void placeShips(String playerName, int[][] battlefield)  {

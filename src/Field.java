@@ -1,4 +1,7 @@
 
+/*
+Отрисовка игрового поля
+ */
 public class Field {
 
     public  void drawField(int[][] battlefield) {

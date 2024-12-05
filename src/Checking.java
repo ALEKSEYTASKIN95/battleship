@@ -1,4 +1,7 @@
 
+/*
+Подсчет количества попаданий по кораблям и определение победителя
+ */
 public class Checking {
 
     public static boolean isWinCondition(String playerName1, String playerName2, int[][] monitor) {
