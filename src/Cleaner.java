@@ -1,11 +1,12 @@
 import java.io.IOException;
 
 public class Cleaner {
-    public  void clearScreen() {
+    public static void clearScreen() {
         try {
             new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
         } catch (InterruptedException | IOException e) {
-            e.printStackTrace();
+            System.out.println("Error in process cleaner");
+            throw new RuntimeException(e.getMessage());
         }
     }
 }

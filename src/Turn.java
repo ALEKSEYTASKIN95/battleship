@@ -1,7 +1,10 @@
+import java.util.Scanner;
 
 public class Turn {
 
-    public  void makeTurn(String playerName, int[][] monitor, int[][] battlefield) {
+    public static void makeTurn(String playerName, int[][] monitor, int[][] battlefield) {
+
+        Scanner scanner = new Scanner(System.in);
         while (true) {
             System.out.println(playerName + ", сделайте ваш ход.");
             System.out.println("  0 1 2 3 4 5 6 7 8 9");
@@ -31,7 +34,7 @@ public class Turn {
                     monitor[y][x] = 1;
                     break;
                 }
-                clearScreen();
+                Cleaner.clearScreen();
             } else {
                 System.out.println("Неверные координаты");
                 break;

@@ -1,7 +1,7 @@
 
-public interface CheckingThePlacementImpl {
+public class CheckingThePlacement {
 
-    default boolean isAvailable(int x, int y, int deck, int rotation, int[][] battlefield) {
+    public static boolean isAvailable(int x, int y, int deck, int rotation, int[][] battlefield) {
         // проверка на выход корабля за длинну поля
         if (rotation == 1) {
             if (y + deck > battlefield.length) {
@@ -45,7 +45,7 @@ public interface CheckingThePlacementImpl {
                 }
             }
             deck--;
-            clearScreen();
+            Cleaner.clearScreen();
         }
         return true;
     }

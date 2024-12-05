@@ -1,7 +1,10 @@
-public class Ships implements CheckingThePlacementImpl {
+import java.util.Scanner;
 
-    public  void placeShips(String playerName, int[][] battlefield)  {
-        Field f = new Field();
+public class Ships  {
+
+    public static void placeShips(String playerName, int[][] battlefield)  {
+        Field field = new Field();
+        Scanner scanner = new Scanner(System.in);
 
         int deck = 4;
 
@@ -10,7 +13,7 @@ public class Ships implements CheckingThePlacementImpl {
             System.out.println(playerName + ", разместите " + deck + " палубный корабль:");
             System.out.println();
 
-            f.drawField(battlefield);
+            field.drawField(battlefield);
 
             System.out.println("Введите коордтнату OX");
             int x = scanner.nextInt();
@@ -20,7 +23,7 @@ public class Ships implements CheckingThePlacementImpl {
             System.out.println("1. Вертикальное.");
             System.out.println("2. Горизонтальное.");
             int direction = scanner.nextInt();
-            if (!isAvailable(x, y, deck, direction, battlefield)) {
+            if (!CheckingThePlacement.isAvailable(x, y, deck, direction, battlefield)) {
                 System.out.println("Неверные координаты");
                 continue;
             }
@@ -32,7 +35,7 @@ public class Ships implements CheckingThePlacementImpl {
                 }
             }
             deck--;
-            clearScreen();
+            Cleaner.clearScreen();
         }
     }
 }

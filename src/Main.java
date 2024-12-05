@@ -1,21 +1,35 @@
+import java.util.Scanner;
 
 public class Main {
 
     public static void main(String[] args) {
-        Players b = new Players();
+
+        Scanner scanner = new Scanner(System.in);
+        Player a = new Player();
+        Player b = new Player();
+
+        int[][] battlefield1 = new int[10][10];
+        int[][] battlefield2 = new int[10][10];
+
+        int[][] monitor1 = new int[10][10];
+        int[][] monitor2 = new int[10][10];
+
         System.out.println("Игрок#1, введите имя:");
-        b.playerName1 = b.scanner.nextLine();
+        a.setPlayerName(scanner.nextLine());
+
         System.out.println("Игрок#2, введите имя:");
-        b.playerName2 = scanner.nextLine();
-        b.placeShips(playerName1, battlefield1);
-        placeShips(playerName2, battlefield2);
+        b.setPlayerName(scanner.nextLine());
+
+        Ships.placeShips(a.getPlayerName(), battlefield1);
+        Ships.placeShips(b.getPlayerName(), battlefield2);
+
         while (true) {
-            makeTurn(playerName1, monitor1, battlefield2);
-            if (isWinCondition()) {
+            Turn.makeTurn(a.playerName, monitor1, battlefield2);
+            if (Checking.isWinCondition(a.playerName, b.playerName, monitor1)) {
                 break;
             }
-            makeTurn(playerName2, monitor2, battlefield1);
-            if (isWinCondition()) {
+            Turn.makeTurn(b.playerName, monitor2, battlefield1);
+            if (Checking.isWinCondition(a.playerName, b.playerName, monitor1)) {
                 break;
             }
         }
