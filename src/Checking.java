@@ -16,7 +16,7 @@ public class Checking {
             return true;
         }
         if (counterPlayerN2 >= 10) {
-            System.out.println(playerName2 + " Победил");
+            System.out.println(playerName2 + " Победил!");
             return true;
         }
         return false;
